@@ -1,6 +1,7 @@
 import praw
 import logging
 from time import sleep
+from datetime import datetime
 
 reactions = {
     'should i sell': 'yes',
@@ -15,9 +16,9 @@ def get_logger(name, level):
     stream_handler.setFormatter(logging.Formatter(log_format))
     new_log.addHandler(stream_handler)
 
-    fileHandler = logging.FileHandler('grootbot.new_log')
-    fileHandler.setFormatter(logging.Formatter(log_format))
-    new_log.addHandler(fileHandler)
+    file_handler = logging.FileHandler(datetime.now().strftime("%Y-%m-%dT%H-%M-%SZ") + '_chanosbot.log')
+    file_handler.setFormatter(logging.Formatter(log_format))
+    new_log.addHandler(file_handler)
 
     new_log.setLevel(level=level)
     return new_log
